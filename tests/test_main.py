@@ -36,7 +36,7 @@ def test_category(category):
 def category1():
     product4 = Product("55\" QLED 4K", "Фоновая подсветка", 123000.0, 7)
     return Category("Телевизоры", "Современный телевизор, который позволяет наслаждаться просмотром, станет вашим "
-                                  "другом и помощником", [product4])
+                                   "другом и помощником", [product4])
 
 
 def test_category1(category1):

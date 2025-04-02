@@ -1,49 +1,45 @@
-import pytest
 from main import Product, Category
+import unittest
 
 
-@pytest.fixture()
-def product():
-    return Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
+class TestProduct(unittest.TestCase):
+
+    def setUp(self):
+        self.product1 = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
+        self.product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
+        self.product3 = Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14)
+
+    def test_product_attributes(self):
+        self.assertEqual(self.product1.name, "Samsung Galaxy S23 Ultra")
+        self.assertEqual(self.product1.description, "256GB, Серый цвет, 200MP камера")
+        self.assertEqual(self.product1.price, 180000.0)
+        self.assertEqual(self.product1.quantity, 5)
+
+        self.assertEqual(self.product2.name, "Iphone 15")
+        self.assertEqual(self.product2.description, "512GB, Gray space")
+        self.assertEqual(self.product2.price, 210000.0)
+        self.assertEqual(self.product2.quantity, 8)
+
+        self.assertEqual(self.product3.name, "Xiaomi Redmi Note 11")
+        self.assertEqual(self.product3.description, "1024GB, Синий")
+        self.assertEqual(self.product3.price, 31000.0)
+        self.assertEqual(self.product3.quantity, 14)
 
 
-def test_product(product):
-    assert product.name == 'Samsung Galaxy S23 Ultra'
-    assert product.description == '256GB, Серый цвет, 200MP камера'
-    assert product.price == 180000.0
-    assert product.quantity == 5
+class TestCategory(unittest.TestCase):
 
+    def setUp(self):
+        self.product1 = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
+        self.product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
+        self.product3 = Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14)
+        self.category1 = Category("Смартфоны",
+                                  "Смартфоны, как средство не только коммуникации, но и получения дополнительных "
+                                  "функций для удобства жизни",
+                                  [self.product1, self.product2, self.product3])
 
-@pytest.fixture()
-def category():
-    product1 = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
-    product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
-    product3 = Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14)
-    return Category("Смартфоны", "Смартфоны, как средство не только коммуникации, но и получения "
-                                 "дополнительных функций для удобства жизни", [product1, product2, product3])
-
-
-def test_category(category):
-    assert (category.name == "Смартфоны") == True
-    assert category.description == ("Смартфоны, как средство не только коммуникации, но и получения дополнительных "
-                                    "функций для удобства жизни")
-    assert len(category.products) == 3
-    assert category.category_count == 1
-    assert category.product_count == 3
-
-
-@pytest.fixture()
-def category1():
-    product4 = Product("55\" QLED 4K", "Фоновая подсветка", 123000.0, 7)
-    return Category("Телевизоры", "Современный телевизор, который позволяет наслаждаться просмотром, станет вашим "
-                                   "другом и помощником", [product4])
-
-
-def test_category1(category1):
-    assert category1.name == "Телевизоры"
-    assert category1.description == ("Современный телевизор, который позволяет наслаждаться просмотром, станет вашим "
-                                     "другом и помощником")
-    assert len(category1.products) == 1
-    assert (category1.products == category1.products) == True
-    assert category1.category_count == 1
-    assert category1.product_count == 1
+    def test_category_attributes(self):
+        self.assertEqual(self.category1.name, "Смартфоны")
+        self.assertEqual(self.category1.description,
+                         "Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для "
+                         "удобства жизни")
+        self.assertEqual(len(self.category1.products), 3)

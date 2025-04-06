@@ -58,4 +58,3 @@ def test_product_new_product(dict_product):
     assert new_product1.description == "256GB, Серый цвет, 200MP камера"
     assert new_product1.price == 180000.0
     assert new_product1.quantity == 5
-

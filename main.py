@@ -43,7 +43,7 @@ class Category:
         self.description = description
         self.__products = products
         Category.category_count += 1
-        Category.product_count += len(products)
+        Category.product_count += len(self.__products)
 
     @property
     def products(self):
@@ -51,11 +51,11 @@ class Category:
             [f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт." for product in self.__products])
 
     def add_product(self, product):
-        if isinstance(product, Product) is True:
+        if isinstance(product, Product):
             self.__products.append(product)
             self.product_count += 1
-        elif isinstance(product, Product) is False:
-            print("не тот тип объекта")
+        else:
+            raise ValueError("Можно добавить только продукты")
 
 
 if __name__ == "__main__":

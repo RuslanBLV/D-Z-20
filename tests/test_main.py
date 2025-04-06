@@ -58,3 +58,12 @@ def test_product_new_product(dict_product):
     assert new_product1.description == "256GB, Серый цвет, 200MP камера"
     assert new_product1.price == 180000.0
     assert new_product1.quantity == 5
+
+
+def test_add_product():
+    new_product1 = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
+    new_product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
+    new_product3 = Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14)
+    assert new_product1 + new_product2 == 2580000.0
+    assert new_product1 + new_product3 == 1334000.0
+    assert new_product2 + new_product3 == 2114000.0

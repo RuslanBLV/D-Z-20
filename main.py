@@ -51,8 +51,11 @@ class Category:
             [f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт." for product in self.__products])
 
     def add_product(self, product):
-        self.__products.append(product)
-        self.product_count += 1
+        if isinstance(product, Product) is True:
+            self.__products.append(product)
+            self.product_count += 1
+        elif isinstance(product, Product) is False:
+            print("не тот тип объекта")
 
 
 if __name__ == "__main__":

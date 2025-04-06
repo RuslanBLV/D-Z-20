@@ -1,4 +1,4 @@
-from main import Product, Category
+from main import Product, Category, Smartphone, LawnGrass
 import unittest
 import pytest
 
@@ -67,3 +67,63 @@ def test_add_product():
     assert new_product1 + new_product2 == 2580000.0
     assert new_product1 + new_product3 == 1334000.0
     assert new_product2 + new_product3 == 2114000.0
+
+
+class TestSmartphone(unittest.TestCase):
+    def setUp(self):
+        self.smartphone1 = Smartphone("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5, 95.5,
+                                      "S23 Ultra", 256, "Серый")
+        self.smartphone2 = Smartphone("Iphone 15", "512GB, Gray space", 210000.0, 8, 98.2, "15", 512, "Gray space")
+        self.smartphone3 = Smartphone("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14, 90.3, "Note 11", 1024,
+                                      "Синий")
+
+    def test_smartphone_attributes(self):
+        self.assertEqual(self.smartphone1.name, "Samsung Galaxy S23 Ultra")
+        self.assertEqual(self.smartphone1.description, "256GB, Серый цвет, 200MP камера")
+        self.assertEqual(self.smartphone1.price, 180000.0)
+        self.assertEqual(self.smartphone1.quantity, 5)
+        self.assertEqual(self.smartphone1.efficiency, 95.5)
+        self.assertEqual(self.smartphone1.model, "S23 Ultra")
+        self.assertEqual(self.smartphone1.memory, 256)
+        self.assertEqual(self.smartphone1.color, "Серый")
+
+        self.assertEqual(self.smartphone2.name, "Iphone 15")
+        self.assertEqual(self.smartphone2.description, "512GB, Gray space")
+        self.assertEqual(self.smartphone2.price, 210000.0)
+        self.assertEqual(self.smartphone2.quantity, 8)
+        self.assertEqual(self.smartphone2.efficiency, 98.2)
+        self.assertEqual(self.smartphone2.model, "15")
+        self.assertEqual(self.smartphone2.memory, 512)
+        self.assertEqual(self.smartphone2.color, "Gray space")
+
+        self.assertEqual(self.smartphone3.name, "Xiaomi Redmi Note 11")
+        self.assertEqual(self.smartphone3.description, "1024GB, Синий")
+        self.assertEqual(self.smartphone3.price, 31000.0)
+        self.assertEqual(self.smartphone3.quantity, 14)
+        self.assertEqual(self.smartphone3.efficiency, 90.3)
+        self.assertEqual(self.smartphone3.model, "Note 11")
+        self.assertEqual(self.smartphone3.memory, 1024)
+        self.assertEqual(self.smartphone3.color, "Синий")
+
+
+class TestLawnGrass(unittest.TestCase):
+    def setUp(self):
+        self.grass1 = LawnGrass("Газонная трава", "Элитная трава для газона", 500.0, 20, "Россия", "7 дней", "Зеленый")
+        self.grass2 = LawnGrass("Газонная трава 2", "Выносливая трава", 450.0, 15, "США", "5 дней", "Темно-зеленый")
+
+    def test_lawnGrass_attributes(self):
+        self.assertEqual(self.grass1.name, "Газонная трава")
+        self.assertEqual(self.grass1.description, "Элитная трава для газона")
+        self.assertEqual(self.grass1.price, 500.0)
+        self.assertEqual(self.grass1.quantity, 20)
+        self.assertEqual(self.grass1.country, "Россия")
+        self.assertEqual(self.grass1.germination_period, "7 дней")
+        self.assertEqual(self.grass1.color, "Зеленый")
+
+        self.assertEqual(self.grass2.name, "Газонная трава 2")
+        self.assertEqual(self.grass2.description, "Выносливая трава")
+        self.assertEqual(self.grass2.price, 450.0)
+        self.assertEqual(self.grass2.quantity, 15)
+        self.assertEqual(self.grass2.country, "США")
+        self.assertEqual(self.grass2.germination_period, "5 дней")
+        self.assertEqual(self.grass2.color, "Темно-зеленый")

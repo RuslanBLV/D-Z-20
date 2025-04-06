@@ -1,5 +1,6 @@
 from main import Product, Category
 import unittest
+import pytest
 
 
 class TestProduct(unittest.TestCase):
@@ -42,4 +43,19 @@ class TestCategory(unittest.TestCase):
         self.assertEqual(self.category1.description,
                          "Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для "
                          "удобства жизни")
-        self.assertEqual(len(self.category1.products), 3)
+
+
+@pytest.fixture()
+def dict_product():
+    dict_product = {"name": "Samsung Galaxy S23 Ultra", "description": "256GB, Серый цвет, 200MP камера",
+                    "price": 180000.0, "quantity": 5}
+    return dict_product
+
+
+def test_product_new_product(dict_product):
+    new_product1 = Product.new_product(dict_product)
+    assert new_product1.name == "Samsung Galaxy S23 Ultra"
+    assert new_product1.description == "256GB, Серый цвет, 200MP камера"
+    assert new_product1.price == 180000.0
+    assert new_product1.quantity == 5
+

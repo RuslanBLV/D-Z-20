@@ -16,6 +16,7 @@ class Category:
         Category.category_count += 1
         Category.product_count += len(self.__products)
 
+
     @property
     def products(self):
         return "\n".join(

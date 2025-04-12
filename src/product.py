@@ -10,11 +10,11 @@ class Product(MixinLog, BaseProduct):
     quantity: int
 
     def __init__(self, name, description, price, quantity):
-        super().__init__(name, price, description, quantity)
         self.name = name
         self.description = description
         self.__price = price
         self.quantity = quantity
+        super().__init__()
 
     @property
     def price(self):

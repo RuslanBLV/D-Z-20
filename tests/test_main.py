@@ -203,3 +203,9 @@ def test_category_str():
     category1 = Category("Смартфоны", "Смартфоны, как средство не только коммуникации, но и получения дополнительных "
                                       "функций для удобства жизни", [product1, product2, product3])
     assert str(category1) == "Смартфоны, количество продуктов: 27 шт."
+
+
+def test_mixin_log(capsys):
+    Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
+    messange = capsys.readouterr()
+    assert messange.out.strip() == "Product('Samsung Galaxy S23 Ultra, 256GB, Серый цвет, 200MP камера, 180000.0, 5')"
